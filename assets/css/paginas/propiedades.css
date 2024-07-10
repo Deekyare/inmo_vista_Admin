@@ -1,0 +1,28 @@
+.contenedor-buscador {
+  background: #faf9f8;
+  border-radius: 10px;
+  padding: 20px;
+  height: fit-content;
+
+}
+
+.contenedor-btn {
+  display: flex;
+  justify-content: center;
+}
+.btn-search {
+  font-size: 16px;
+  padding: 0 20px;
+  background: #0aad96;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+}
+
+.btn-search:hover {
+  background: #72ccc1;
+  transition: 0.3s ;
+}
+
+
+

@@ -1,0 +1,35 @@
+/*
+  # Propiedades Details.
+*/
+.propiedades-details {
+  padding-top: 40px;
+}
+
+.propiedades-details img {
+  width: 100%;
+}
+
+.propiedades-details .propiedades-info {
+  padding: 30px;
+  box-shadow: 0px 0 30px rgba(43, 35, 32, 0.08);
+}
+
+.propiedades-details .propiedades-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.propiedades-details .propiedades-info ul li + li {
+  margin-top: 10px;
+}
+
+.propiedades-details .propiedades-description {
+  padding-top: 30px;
+}
+
+.propiedades-details .propiedades-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}

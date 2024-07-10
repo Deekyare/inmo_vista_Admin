@@ -1,0 +1,109 @@
+const url = new URL(window.location.href);
+const operacion = url.searchParams.get("operacion") || "";
+const tipoPropiedad = url.searchParams.get("tipo_propiedad") || "";
+const idLocalidad = url.searchParams.get("id_localidad") || "";
+const baseUrl = "http://localhost:3000";
+const apiUrl = `${baseUrl}/propiedades?operacion=${operacion}&tipo_propiedad=${tipoPropiedad}&id_localidad=${idLocalidad}`;
+let localidades = [];
+
+fetch(apiUrl)
+  .then((response) => response.json())
+  .then((data) => mostrarPropiedades(data))
+  .catch((error) => console.log(error));
+
+function mostrarPropiedades(propiedades) {
+  const sinResultadosElement = document.getElementById("sin_resultados");
+
+  if (propiedades.length) {
+    sinResultadosElement.classList.add("d-none");
+  }
+
+  let contenedorPropiedades = document.getElementById("contenedor_propiedades");
+  contenedorPropiedades.innerHTML = "";
+
+  propiedades.forEach((propiedad) => {
+    let propiedadElement = document.createElement("div");
+    propiedadElement.classList.add("propiedades-info", "col-lg-4", "col-md-6");
+
+    propiedadElement.innerHTML = `
+        <div>
+          <a href="/propiedades-details.html?id=${propiedad.id}">
+            <img src="${
+              propiedad.fotos.length
+                ? propiedad.fotos[0]
+                : "https://www.came-educativa.com.ar/upsoazej/2022/03/placeholder-4.png"
+            }" style="width: 100%; height: 350px;" class="img-fluid" alt="" />
+          </a>
+        </div>
+        <div class="card-body justify-content-around bg-secondary text-white mb-4">
+          
+          <div class="d-flex gap-2 align-items-baseline pt-3 mx-xl-3 bd-highlight flex-grow-1 bd-highlight ">
+             <div class="d-flex flex-grow-1 bd-highlight gap-3"> <i class="d-flex bi-geo-alt"></i>
+            <p class="detalle_index">${propiedad.localidad}</p>
+            <i class="d-flex bi-house-door"></i>
+            <p class="detalle_index">${propiedad.tipo_propiedad}</p></div>
+           
+            <div class="d-flex bd-highlight">$${propiedad.valor}</div>
+          </div>
+          <div>
+          
+          </div>  
+    
+        </div>
+
+
+      `;
+
+    contenedorPropiedades.appendChild(propiedadElement);
+  });
+}
+
+fetch(`${baseUrl}/localidades`)
+  .then((response) => response.json())
+  .then((data) => {
+    localidades = data.map((localidad) => localidad);
+    setDefaultFilters();
+    selectTipoLoc();
+  })
+  .catch((error) => console.log(error));
+
+function setDefaultFilters() {
+  const operacionOptions = document.getElementById("selectOperacion").options;
+  for (const operacionItem of operacionOptions) {
+    if (operacionItem.value === operacion) {
+      operacionItem.selected = true;
+    }
+  }
+
+  const tipoPropOptions = document.getElementById("selectTipoProp").options;
+  for (const optionItem of tipoPropOptions) {
+    if (optionItem.value === tipoPropiedad) {
+      optionItem.selected = true;
+    }
+  }
+}
+
+function selectTipoLoc() {
+  let selectElement = document.getElementById("selectLocalidad");
+
+  for (const localidadItem of localidades) {
+    let option = document.createElement("option");
+    option.value = localidadItem.id;
+    option.innerHTML = localidadItem.nombre;
+
+    if (idLocalidad == localidadItem.id) {
+      option.selected = true;
+    }
+    selectElement.appendChild(option);
+  }
+}
+
+function buscar() {
+  const operacion = document.getElementById("selectOperacion").value;
+  const tipoProp = document.getElementById("selectTipoProp").value;
+  const localidad = document.getElementById("selectLocalidad").value;
+  const filters = `operacion=${operacion}&tipo_propiedad=${tipoProp}&id_localidad=${localidad}`;
+  const redirectUrl = `${url.protocol}//${url.host}/index.html?${filters}`;
+  console.log(redirectUrl, url);
+  location.href = redirectUrl;
+}

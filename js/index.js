@@ -37,7 +37,7 @@ function mostrarPropiedades(propiedades) {
         </div>
         <div class="card-body justify-content-around bg-secondary text-white mb-4">
           
-          <div class="d-flex gap-2 align-items-baseline pt-3 mx-xl-3 bd-highlight flex-grow-1 bd-highlight ">
+          <div class="d-flex gap-2 align-items-baseline pt-3 mx-3 bd-highlight flex-grow-1 bd-highlight ">
              <div class="d-flex flex-grow-1 bd-highlight gap-3"> <i class="d-flex bi-geo-alt"></i>
             <p class="detalle_index">${propiedad.localidad}</p>
             <i class="d-flex bi-house-door"></i>
@@ -99,11 +99,18 @@ function selectTipoLoc() {
 }
 
 function buscar() {
+  const filtros = [];
   const operacion = document.getElementById("selectOperacion").value;
+  if (operacion) filtros.push(`operacion=${operacion}`);
+
+
   const tipoProp = document.getElementById("selectTipoProp").value;
+  if (tipoProp) filtros.push(`tipo_propiedad=${tipoProp}`);
+
   const localidad = document.getElementById("selectLocalidad").value;
-  const filters = `operacion=${operacion}&tipo_propiedad=${tipoProp}&id_localidad=${localidad}`;
-  const redirectUrl = `${url.protocol}//${url.host}/index.html?${filters}`;
-  console.log(redirectUrl, url);
+  if (localidad) filtros.push(`id_localidad=${localidad}`);
+
+  const redirectUrl = `${url.protocol}//${url.host}/index.html?${filtros.join('&')}#titulo-propiedades`;
+
   location.href = redirectUrl;
 }

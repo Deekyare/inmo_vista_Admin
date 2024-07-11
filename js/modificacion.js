@@ -111,9 +111,12 @@ function submitForm() {
     .then((response) => {
       console.log("Success:", response);
       document.getElementById("imagePreview").src = response.foto;
-      alert("Propiedad modificada con exito")
-      location.href = "/index.html";
+      showToast("Propiedad modificada exitosamente");
+      setTimeout(() => {
+        location.href = "/index.html"  
+      }, 2000)      
     });
+    
 }
 document.getElementById("cancelar").addEventListener("click", () => {
   location.href = "/index.html";
@@ -130,4 +133,11 @@ function previewImage() {
   }
 }
 
+function showToast(message) {
+  const toastElement = document.getElementById('successToast');
+  const toastBody = toastElement.querySelector('.toast-body');
+  toastBody.textContent = message;
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
 

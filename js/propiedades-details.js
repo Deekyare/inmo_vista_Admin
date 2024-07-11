@@ -65,8 +65,10 @@ async function eliminarPropiedad(e) {
     const response = await fetch(apiUrl, { method: 'DELETE' });
 
     if (response.ok) {
-      alert ("La propiedad se elimino correctamente")
-      window.location.href = '/index.html';
+      showToast("Propiedad aliminada exitosamente");
+      setTimeout(() => {
+        location.href = "/index.html"  
+      }, 2000)      
     } else {
       // Hubo un error al eliminar la propiedad
       alert("Error al eliminar la propiedad")
@@ -80,4 +82,12 @@ async function eliminarPropiedad(e) {
 
 function editarPropiedad() {
   location.href = `/edit_prop.html?id=${id}`
+}
+
+function showToast(message) {
+  const toastElement = document.getElementById('successToast');
+  const toastBody = toastElement.querySelector('.toast-body');
+  toastBody.textContent = message;
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
 }

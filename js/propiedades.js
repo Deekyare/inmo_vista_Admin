@@ -28,8 +28,6 @@ function mostrarPropiedades(propiedades) {
   propiedades.forEach((propiedad) => {
     let propiedadElement = document.createElement("div");
     propiedadElement.classList.add("propiedades-info");
-
-    alert('asd')
     propiedadElement.innerHTML = `
   
     <a href="/propiedades-details.html?id=${propiedad.id}">
@@ -56,4 +54,12 @@ function mostrarPropiedades(propiedades) {
 
     contenedorPropiedades.appendChild(propiedadElement);
   });
+}
+
+function showToast(message) {
+  const toastElement = document.getElementById("successToast");
+  const toastBody = toastElement.querySelector(".toast-body");
+  toastBody.textContent = message;
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
 }

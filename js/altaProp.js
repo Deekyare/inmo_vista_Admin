@@ -9,9 +9,9 @@ let estado = document.getElementById("estado");
 let descripcion = document.getElementById("descripcion");
 let operacion = document.getElementById("select_operacion");
 let foto = document.getElementById("foto");
-let localidades = []
+let localidades = [];
 const url = new URL(window.location.href);
-const id = url.searchParams.get('id');
+const id = url.searchParams.get("id");
 const baseUrl = "http://localhost:3000";
 const apiUrl = `${baseUrl}/propiedades/${id}`;
 
@@ -39,10 +39,8 @@ function selectTipoLoc() {
 }
 
 function submitForm(e) {
-  console.log(e);
-  e.preventdefault();
   const url = "http://localhost:3000/propiedades";
-  
+
   fetch(url, {
     method: "POST",
     // body: carga valor habitaciones y select
@@ -67,12 +65,15 @@ function submitForm(e) {
     .then((response) => {
       console.log("Success:", response);
       document.getElementById("imagePreview").src = "";
-      alert("Propiedad creada exitosamente");
-      location.href = "/index.html";
+
+      showToast("Propiedad creada exitosamente");
+      setTimeout(() => {
+        location.href = "/index.html"  
+      }, 2000)      
     });
 }
 
-document.getElementById("cancelar").addEventListener("click", () => {
+document.getElementById("btnCancelar").addEventListener("click", () => {
   location.href = "/index.html";
 });
 
@@ -82,7 +83,15 @@ function previewImage() {
     preview.src = foto.value;
     preview.style.display = "block"; // Mostrar la imagen después de cargarla
   } else {
-    preview.src = '';
+    preview.src = "";
     preview.style.display = "none";
   }
+}
+
+function showToast(message) {
+  const toastElement = document.getElementById('successToast');
+  const toastBody = toastElement.querySelector('.toast-body');
+  toastBody.textContent = message;
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
 }

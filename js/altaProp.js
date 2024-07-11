@@ -1,5 +1,5 @@
 let formulario = document.getElementById("formulario");
-let titulo = document.getElementById("título");
+let titulo = document.getElementById("titulo");
 let tipoProp = document.getElementById("select_tipo_prop");
 let localidad = document.getElementById("select_localidad");
 let superficie = document.getElementById("superficie");
@@ -38,19 +38,11 @@ function selectTipoLoc() {
   }
 }
 
-function submitForm() {
-  let url = "http://localhost:3000/propiedades";
-  let carga = new FormData();
-
-  carga.append("titulo", titulo.value);
-  carga.append("superficie", superficie.value);
-  carga.append("valor", valor.value);
-  carga.append("habitaciones", habitaciones.value);
-  carga.append("estado", estado.value);
-  carga.append("descripcion", descripcion.value);
-  carga.append("operacion", operacion.value);
-  carga.append("foto", foto.value);
-
+function submitForm(e) {
+  console.log(e);
+  e.preventdefault();
+  const url = "http://localhost:3000/propiedades";
+  
   fetch(url, {
     method: "POST",
     // body: carga valor habitaciones y select

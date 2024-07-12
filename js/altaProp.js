@@ -165,6 +165,7 @@ function submitForm(e) {
       showToast("Propiedad creada exitosamente");
       setTimeout(() => {
         location.href = "/index.html#titulo-propiedades";
+        // `/propiedades-details.html?id=${id}`
       }, 2000);
     });
 }

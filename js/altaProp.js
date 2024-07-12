@@ -9,6 +9,7 @@ let estado = document.getElementById("estado");
 let descripcion = document.getElementById("descripcion");
 let operacion = document.getElementById("select_operacion");
 let foto = document.getElementById("foto");
+const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
@@ -41,14 +42,14 @@ function selectTipoLoc() {
   }
 }
 
-function submitForm(e) {
-  const mensajeError = document.getElementById("mensajeError");
+function validarForm() {
+  let esValido = true;
 
   // Validación de los campos
   if (titulo.value.trim() === "") {
     titulo.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-    
+    esValido = false;
   } else {
     titulo.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -56,7 +57,7 @@ function submitForm(e) {
   if (tipoProp.value.trim() === "") {
     tipoProp.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
- 
+    esValido = false;
   } else {
     tipoProp.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -64,7 +65,7 @@ function submitForm(e) {
   if (localidad.value.trim() === "") {
     localidad.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-    
+    esValido = false;
   } else {
     localidad.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -72,7 +73,7 @@ function submitForm(e) {
   if (superficie.value.trim() === "") {
     superficie.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
- 
+    esValido = false;
   } else {
     superficie.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -80,7 +81,7 @@ function submitForm(e) {
   if (valor.value.trim() === "") {
     valor.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-  
+    esValido = false;
   } else {
     valor.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -88,7 +89,7 @@ function submitForm(e) {
   if (estado.value.trim() === "") {
     estado.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-  
+    esValido = false;
   } else {
     estado.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -96,7 +97,7 @@ function submitForm(e) {
   if (habitaciones.value.trim() === "") {
     habitaciones.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-    
+    esValido = false;
   } else {
     habitaciones.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -104,7 +105,7 @@ function submitForm(e) {
   if (descripcion.value.trim() === "") {
     descripcion.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-   
+    esValido = false;
   } else {
     descripcion.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -112,7 +113,7 @@ function submitForm(e) {
   if (operacion.value.trim() === "") {
     operacion.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-    
+    esValido = false;
   } else {
     operacion.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
@@ -120,11 +121,19 @@ function submitForm(e) {
   if (foto.value.trim() === "") {
     foto.classList.add("border-danger");
     mensajeError.classList.remove("d-none");
-    return;
+    esValido = false;
   } else {
     foto.classList.remove("border-danger");
     mensajeError.classList.add("d-none");
   }
+
+  return esValido;
+}
+
+function submitForm(e) {
+  const esValido = validarForm();
+  
+  if (!esValido) return;
 
   const url = "http://localhost:3000/propiedades";
 
@@ -155,7 +164,7 @@ function submitForm(e) {
 
       showToast("Propiedad creada exitosamente");
       setTimeout(() => {
-        location.href = "/index.html";
+        location.href = "/index.html#titulo-propiedades";
       }, 2000);
     });
 }

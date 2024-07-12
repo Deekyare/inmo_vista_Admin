@@ -131,7 +131,6 @@
                 id="titulo"
                 name="titulo"
                 placeholder="Título de la propiedad"
-                required
               />
             </div>
 
@@ -143,7 +142,7 @@
                 id="descripcion"
                 name="descripcion"
                 placeholder="Descripción de la propiedad"
-                required
+                
               />
             </div>
             <div class="mb-3 text-center text-light my-3">
@@ -166,7 +165,7 @@
                 id="superficie"
                 name="superficie"
                 placeholder="Superficie de la propiedad"
-                required
+                
               />
             </div>
 
@@ -178,7 +177,7 @@
                 id="habitaciones"
                 name="habitaciones"
                 placeholder="Número de habitaciones"
-                required
+                
               />
             </div>
 
@@ -191,7 +190,7 @@
                 id="estado"
                 name="estado"
                 placeholder="Estado de la propiedad"
-                required
+                
               />
             </div>
 
@@ -202,7 +201,6 @@
                   id="select_operacion"
                   class="form-select form-select-sm"
                 >
-                  <option value="Compra">Compra</option>
                   <option value="Venta">Venta</option>
                   <option value="Alquiler">Alquiler</option>
                   <option value="Alquiler_temporal">Alquiler temporal</option>
@@ -218,7 +216,7 @@
                 id="valor"
                 name="valor"
                 placeholder="Valor de la propiedad"
-                required
+                
               />
             </div>
 
@@ -253,6 +251,7 @@
             </div>
 
             <div class="d-grid gap-2 mx-auto text-center my-2">
+              <p id="mensajeError" class="d-none">No debe dejar campos vacios</p>
               <button type="submit" class="btn btn-outline-light">
                 Confirmar
               </button>

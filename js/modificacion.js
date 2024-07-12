@@ -9,14 +9,12 @@ let estado = document.getElementById("estado");
 let descripcion = document.getElementById("descripcion");
 let operacion = document.getElementById("select_operacion");
 let foto = document.getElementById("foto");
+const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
 const baseUrl = "http://localhost:3000";
 const apiUrl = `${baseUrl}/propiedades/${id}`;
-
-
-
 
 fetch(`${baseUrl}/localidades`)
   .then((response) => response.json())
@@ -87,7 +85,85 @@ function selectTipoLoc(localidadValue) {
   }
 }
 
+function validarForm() {
+  let esValido = true;
+
+  // Validación de los campos
+  if (titulo.value.trim() === "") {
+    titulo.classList.add("border-danger");
+    esValido = false;
+  } else {
+    titulo.classList.remove("border-danger");
+  }
+  if (tipoProp.value.trim() === "") {
+    tipoProp.classList.add("border-danger");
+    esValido = false;
+  } else {
+    tipoProp.classList.remove("border-danger");
+  }
+  if (localidad.value.trim() === "") {
+    localidad.classList.add("border-danger");
+    esValido = false;
+  } else {
+    localidad.classList.remove("border-danger");
+  }
+  if (superficie.value.trim() === "") {
+    superficie.classList.add("border-danger");
+    esValido = false;
+  } else {
+    superficie.classList.remove("border-danger");
+  }
+  if (valor.value.trim() === "") {
+    valor.classList.add("border-danger");
+    esValido = false;
+  } else {
+    valor.classList.remove("border-danger");
+  }
+  if (estado.value.trim() === "") {
+    estado.classList.add("border-danger");
+    esValido = false;
+  } else {
+    estado.classList.remove("border-danger");
+  }
+  if (habitaciones.value.trim() === "") {
+    habitaciones.classList.add("border-danger");
+    esValido = false;
+  } else {
+    habitaciones.classList.remove("border-danger");
+  }
+  if (descripcion.value.trim() === "") {
+    descripcion.classList.add("border-danger");
+    esValido = false;
+  } else {
+    descripcion.classList.remove("border-danger");
+  }
+  if (operacion.value.trim() === "") {
+    operacion.classList.add("border-danger");
+    esValido = false;
+  } else {
+    operacion.classList.remove("border-danger");
+  }
+  if (foto.value.trim() === "") {
+    foto.classList.add("border-danger");
+    esValido = false;
+  } else {
+    foto.classList.remove("border-danger");
+  }
+
+  if (!esValido) {
+    mensajeError.classList.remove("d-none");
+  } else {
+    mensajeError.classList.add("d-none");
+  }
+
+  return esValido;
+}
+
 function submitForm() {
+  const esValido = validarForm();
+
+  if (!esValido) return;
+
   fetch(apiUrl, {
     method: "PUT",
     body: JSON.stringify({
@@ -113,7 +189,7 @@ function submitForm() {
       document.getElementById("imagePreview").src = response.foto;
       showToast("Propiedad modificada exitosamente");
       setTimeout(() => {
-        // location.href = "/index.html"  
+        location.href = `/propiedades-details.html?id=${id}`  
       }, 2000)      
     });
     

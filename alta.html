@@ -125,7 +125,6 @@
                 id="titulo"
                 name="titulo"
                 placeholder="Título"
-                required
               />
             </div>
 
@@ -137,11 +136,10 @@
                 id="descripcion"
                 name="descripcion"
                 placeholder="Descripción de la propiedad"
-                required
               />
             </div>
 
-            <div class="mb-3 text-center text-light my-3">
+            <div class="mb-3 text-center text-light my-3 " >
               <label for="select_tipo_prop" class="form-label"
                 >Tipo de propiedad</label
               >
@@ -150,8 +148,8 @@
                 id="select_tipo_prop"
                 name="select_tipo_prop"
                 class="form-select form-select-sm"
-                required
               >
+              <option value="" selected>Tipo de propiedad</option>
                 <option value="Casa">Casa</option>
                 <option value="Departamento">Departamento</option>
                 <option value="Lote">Lote</option>
@@ -167,7 +165,6 @@
                 id="superficie"
                 name="superficie"
                 placeholder="Superficie de la propiedad"
-                required
               />
             </div>
 
@@ -179,7 +176,6 @@
                 id="habitaciones"
                 name="habitaciones"
                 placeholder="Número de habitaciones"
-                required
               />
             </div>
 
@@ -191,29 +187,8 @@
                 id="estado"
                 name="estado"
                 placeholder="Estado de la propiedad"
-                required
               />
             </div>
-
-            <!-- <div class="form-group text-center text-light my-3">
-              <label for="foto">Foto</label>
-              <input
-                type="file"
-                class="form-control"
-                id="foto"
-                name="imagen"
-                onchange="previewImage(event)"
-              />
-            </div>
-
-            <div class="text-center text-light my-3">
-              <img
-                id="imagePreview"
-                src=""
-                alt="Vista previa de la imagen"
-                style="max-width: 100%; height: auto"
-              />
-            </div> -->
 
             <div class="mb-3 text-center text-light my-3">
               <label for="select_operacion" class="form-label">Operación</label>
@@ -222,8 +197,9 @@
                   id="select_operacion"
                   name="select_operacion"
                   class="form-select form-select-sm"
-                  required
+                  
                 >
+                  <option value="" selected>Selecione una operacion</option>
                   <option value="Compra">Compra</option>
                   <option value="Venta">Venta</option>
                   <option value="Alquiler">Alquiler</option>
@@ -240,7 +216,6 @@
                 id="valor"
                 name="valor"
                 placeholder="Valor de la propiedad"
-                required
               />
             </div>
 
@@ -251,8 +226,9 @@
                   id="select_localidad"
                   name="select_localidad"
                   class="form-select form-select-sm"
-                  required
-                ></select>
+                >
+                <option value="" selected>Selecione una localidad</option>
+              </select>
               </div>
             </div>
 
@@ -264,7 +240,6 @@
                 id="foto"
                 name="imagen"
                 onchange="previewImage(event)"
-                required
               />
             </div>
 
@@ -278,6 +253,7 @@
             </div>
 
             <div class="d-grid gap-2 mx-auto text-center my-2">
+              <p id="mensajeError" class="d-none">Todos los campos son requeridos</p>
               <button
                 type="submit"
                 id="btnConfirmar"

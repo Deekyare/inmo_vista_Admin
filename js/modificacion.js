@@ -113,7 +113,7 @@ function submitForm() {
       document.getElementById("imagePreview").src = response.foto;
       showToast("Propiedad modificada exitosamente");
       setTimeout(() => {
-        location.href = "/index.html"  
+        // location.href = "/index.html"  
       }, 2000)      
     });
     

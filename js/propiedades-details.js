@@ -33,9 +33,10 @@ console.log(propiedad)
               <h3>Detalle</h3>
               <ul>
                 <li><strong></strong> ${propiedad.titulo}</li>
-                <li><strong>Localidad</strong> ${propiedad.localidad}</li>
-                <li><strong>Tipo de operación </strong>: ${propiedad.operacion}</li>
-                <li><strong>Estado</strong>: ${propiedad.estado}</li>
+                <li><strong>Tipo de propiedad:</strong> ${propiedad.tipo_propiedad}</li>
+                <li><strong>Localidad:</strong> ${propiedad.localidad}</li>
+                <li><strong>Tipo de operación: </strong> ${propiedad.operacion}</li>
+                
                 <li><strong>Valor</strong>: ${propiedad.valor}</li>
               
               </ul>
@@ -44,8 +45,9 @@ console.log(propiedad)
               <h2>Características de la propiedad</h2>
               <ul>
               <li> ${propiedad.descripcion}</li>
-              <li><strong>Superficie</strong>: ${propiedad.superficie}</li>
-                <li><strong>Habitaciones</strong>: ${propiedad.habitaciones}</li>
+              <li><strong>Estado:</strong> ${propiedad.estado}</li>
+              <li><strong>Superficie:</strong> ${propiedad.superficie}</li>
+                <li><strong>Habitaciones:</strong> ${propiedad.habitaciones}</li>
               
               </ul>
              

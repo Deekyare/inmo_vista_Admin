@@ -16,6 +16,8 @@ function mostrarPropiedades(propiedades) {
 
   if (propiedades.length) {
     sinResultadosElement.classList.add("d-none");
+  } else {
+    sinResultadosElement.classList.remove("d-none");
   }
 
   let contenedorPropiedades = document.getElementById("contenedor_propiedades");

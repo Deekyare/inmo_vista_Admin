@@ -133,7 +133,7 @@ function submitForm(e) {
   
   if (!esValido) return;
 
-  fetch(`${baseUrl}/propiedades`, {
+  fetch(`${baseApiUrl}/propiedades`, {
     method: "POST",
     // body: carga valor habitaciones y select
     body: JSON.stringify({

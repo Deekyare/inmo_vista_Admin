@@ -1,6 +1,6 @@
-const baseUrl = "http://localhost:3000/propiedades";
+const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
 
-fetch(baseUrl)
+fetch(`${baseApiUrl}/propiedades`)
   .then((response) => response.json())
   .then((data) => mostrarPropiedades(data))
   .catch((error) => console.log(error));

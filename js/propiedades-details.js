@@ -1,9 +1,8 @@
 const url = new URL(window.location.href);
 const id = url.searchParams.get('id');
-const baseUrl = "http://localhost:3000";
-const apiUrl = `${baseUrl}/propiedades/${id}`;
+const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
 
-fetch(apiUrl)
+fetch(`${baseApiUrl}/propiedades/${id}`)
   .then((response) => response.json())
   .then((data) => mostrarPropiedades(data))
   .catch((error) => console.log(error));
@@ -64,7 +63,7 @@ console.log(propiedad)
 //ELIMINAR PROPIEDAD
 async function eliminarPropiedad(e) {
   try {
-    const response = await fetch(apiUrl, { method: 'DELETE' });
+    const response = await fetch(`${baseApiUrl}/propiedades/${id}`, { method: 'DELETE' });
 
     if (response.ok) {
       showToast("Propiedad aliminada exitosamente");

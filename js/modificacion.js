@@ -13,7 +13,7 @@ const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
-const baseApiUrl = "api-rest-inmobiliaria-production.up.railway.app";
+const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
 const propiedadesUrl = `${baseApiUrl}/propiedades/${id}`;
 
 fetch(`${baseApiUrl}/localidades`)

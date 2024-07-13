@@ -12,7 +12,7 @@ let foto = document.getElementById("foto");
 const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
-const baseUrl = "http://localhost:3000";
+const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
 
 fetch(`${baseUrl}/localidades`)
   .then((response) => response.json())
@@ -133,9 +133,7 @@ function submitForm(e) {
   
   if (!esValido) return;
 
-  const url = "http://localhost:3000/propiedades";
-
-  fetch(url, {
+  fetch(`${baseUrl}/propiedades`, {
     method: "POST",
     // body: carga valor habitaciones y select
     body: JSON.stringify({

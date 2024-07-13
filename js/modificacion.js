@@ -13,17 +13,17 @@ const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
 const id = url.searchParams.get("id");
-const baseUrl = "http://localhost:3000";
-const apiUrl = `${baseUrl}/propiedades/${id}`;
+const baseApiUrl = "api-rest-inmobiliaria-production.up.railway.app";
+const propiedadesUrl = `${baseApiUrl}/propiedades/${id}`;
 
-fetch(`${baseUrl}/localidades`)
+fetch(`${baseApiUrl}/localidades`)
   .then((response) => response.json())
   .then((data) => {
     localidades = data.map((localidad) => localidad);
   })
   .catch((error) => console.log(error));
 
-fetch(apiUrl)
+fetch(propiedadesUrl)
   .then((response) => response.json())
   .then((data) => initForm(data))
   .catch((error) => console.log(error));
@@ -164,7 +164,7 @@ function submitForm() {
 
   if (!esValido) return;
 
-  fetch(apiUrl, {
+  fetch(propiedadesUrl, {
     method: "PUT",
     body: JSON.stringify({
       titulo: titulo.value,

@@ -3,7 +3,7 @@ const operacion = url.searchParams.get("operacion") || "";
 const tipoPropiedad = url.searchParams.get("tipo_propiedad") || "";
 const idLocalidad = url.searchParams.get("id_localidad") || "";
 const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
-const searchUrl = `${baseUrl}/propiedades?operacion=${operacion}&tipo_propiedad=${tipoPropiedad}&id_localidad=${idLocalidad}`;
+const searchUrl = `${baseApiUrl}/propiedades?operacion=${operacion}&tipo_propiedad=${tipoPropiedad}&id_localidad=${idLocalidad}`;
 let localidades = [];
 
 fetch(searchUrl)

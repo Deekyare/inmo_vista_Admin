@@ -14,7 +14,7 @@ let localidades = [];
 const url = new URL(window.location.href);
 const baseApiUrl = "https://api-rest-inmobiliaria-production.up.railway.app";
 
-fetch(`${baseUrl}/localidades`)
+fetch(`${baseApiUrl}/localidades`)
   .then((response) => response.json())
   .then((data) => {
     localidades = data.map((localidad) => localidad);

@@ -12,9 +12,7 @@ let foto = document.getElementById("foto");
 const mensajeError = document.getElementById("mensajeError");
 let localidades = [];
 const url = new URL(window.location.href);
-const id = url.searchParams.get("id");
 const baseUrl = "http://localhost:3000";
-const apiUrl = `${baseUrl}/propiedades/${id}`;
 
 fetch(`${baseUrl}/localidades`)
   .then((response) => response.json())
@@ -164,8 +162,7 @@ function submitForm(e) {
 
       showToast("Propiedad creada exitosamente");
       setTimeout(() => {
-        location.href = "/index.html#titulo-propiedades";
-        // `/propiedades-details.html?id=${id}`
+        location.href = `/propiedades-details.html?id=${response.insertId}`;
       }, 2000);
     });
 }
